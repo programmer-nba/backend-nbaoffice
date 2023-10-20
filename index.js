@@ -13,7 +13,11 @@ mongoose.connect(process.env.DB,{ useNewUrlParser: true });
 app.use(express.json());
 app.use(cors());
 
-// app.use('/nba-office', require("./routes/index"));
+app.use('/nba-office', require("./routes/index.js"));
+
+app.use('/nba-office/order', require("./routes/order/order.js"));
+
+app.use('/nba-office/employee', require("./routes/employee/index.js"));
 
 
 //Thailand
