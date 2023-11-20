@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
 
-const userSchema = new mongoose.Schema(
+const employeeSchema = new mongoose.Schema(
   {
     name: {type: String, required: true},
     lastname: {type: String, required: true},
@@ -53,8 +53,7 @@ const userSchema = new mongoose.Schema(
       status: {type: Boolean, required: false, default: false},
       remark: {type: String, required: false, default: "-"}, // อยู่ระหว่างการตรวจสอบ, ไม่ผ่านการตรวจสอบ, ตรวจสอบสำเร็จ
     },
-  },
-  {timestamps: true}
+  }
 );
 
 const validateLogin = (data) => {
@@ -79,7 +78,7 @@ const validateUpdate = (data) => {
   return schema.validate(data);
 };
 
-const validateUser = (data) => {
+const validateEmployee = (data) => {
   const schema = Joi.object({
     name: Joi.string().required().label("invalid name"),
     lastname: Joi.string().required().label("invalid lastname"),
@@ -100,6 +99,6 @@ const validateUser = (data) => {
   return schema.validate(data);
 };
 
-const User = mongoose.model("Users", userSchema);
+const Employees = mongoose.model("employee", employeeSchema);
 
-module.exports = {User, validateUser, validateLogin, validateUpdate};
+module.exports = {Employees, validateEmployee, validateLogin, validateUpdate};

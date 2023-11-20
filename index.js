@@ -13,6 +13,7 @@ app.use(cors());
 app.use("/nba-office", require("./routes"));
 
 app.use("/nba-office/admin", require("./routes/admin"));
+app.use("/nba-office/employee", require("./routes/employee"));
 
 const port = process.env.PORT || 4003;
 app.listen(port, console.log(`Listening on port ${port}`));

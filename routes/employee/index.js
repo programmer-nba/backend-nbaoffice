@@ -1,10 +1,8 @@
 const router = require('express').Router();
 const Employee = require('../../controllers/employee.controller.js');
-const { AuthorizeUser }= require('../../middleware/auth.employee.js');
+const authEmployee = require('../../middleware/auth.employee.js');
+const authAdmin = require('../../middleware/auth.admin.js');
 
-router.post('/checkin',AuthorizeUser, Employee.Checkin);
-router.get('/checkin',AuthorizeUser, Employee.GetCheckin);
-router.post('/checkout',AuthorizeUser, Employee.Checkout);
-router.get('/checkout',AuthorizeUser, Employee.GetCheckout);
+router.post('/', Employee.create);
 
 module.exports = router;
