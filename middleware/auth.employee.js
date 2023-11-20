@@ -8,12 +8,21 @@ module.exports = checkToken = async (req, res, next) => {
       if (err) {
         return res.status(408).json({
           success: false,
-          message: "หมดเวลาใช้งานแล้ว",
+          message: "หมดเวลาใช้งานแล้ว หรือ สิทธิการใช้งานเฉพาะพนักงาน",
           logout: true,
           description: "Request Timeout Or Employee Only",
         });
       }
       req.decoded = decoded;
+
+      if (decoded.row !== "employee") {
+        return res.status(401).json({
+          success: false,
+          message: "ไม่มีสิทธิใช้งานฟังก์ชั่นนี้",
+          logout: true,
+          description: "Unauthorized",
+        });
+      }
       next();
     });
   } else {

@@ -1,12 +1,6 @@
-const router = require('express').Router();
-const main = require('../controllers/main.controller.js');
-const { AuthorizeUser }= require('../middleware/auth.js');
+const router = require("express").Router();
+const main = require("../controllers/main.controller.js");
 
-router.post('/login', main.Login);
-router.post('/logout',AuthorizeUser, main.logout);
-router.get('/me', AuthorizeUser, main.Me);
-router.post('/create',AuthorizeUser, main.Create);
-router.get('/list',AuthorizeUser, main.GetUser);
-router.delete('/delete/:id',AuthorizeUser, main.Delete);
+router.post("/login", main.Login);
 
 module.exports = router;
