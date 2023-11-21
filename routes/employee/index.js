@@ -1,8 +1,11 @@
 const router = require('express').Router();
-const Employee = require('../../controllers/employee.controller.js');
+const Employee = require('../../controllers/employee/employee.controller.js');
 const authEmployee = require('../../middleware/auth.employee.js');
-const authAdmin = require('../../middleware/auth.admin.js');
 
-router.post('/', Employee.create);
+router.post('/',authEmployee, Employee.create);
+router.get('/',authEmployee, Employee.getEmployeeAll);
+router.get('/:id',authEmployee, Employee.getEmployeeById);
+router.put('/:id',authEmployee, Employee.updateEmployee);
+router.delete('/:id',authEmployee, Employee.deleteEmployee);
 
 module.exports = router;

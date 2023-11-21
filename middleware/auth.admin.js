@@ -14,8 +14,7 @@ module.exports = checkToken = async (req, res, next) => {
         });
       }
       req.decoded = decoded;
-
-      if (decoded.row !== "admin") {
+      if (decoded.row !== "Admin") {
         return res.status(401).json({
           success: false,
           message: "ไม่มีสิทธิใช้งานฟังก์ชั่นนี้",
